@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.ProductTypeMapper">
+   <select id="getById" parameterType="int" resultType="ProductType">
+      select * from producttype where ptid=#{ptid}
+   </select>
+   <select id="listAll" resultType="ProductType">
+      select * from producttype
+   </select>
+   <insert id="save" parameterType="ProductType">
+      insert into producttype (ptname) values (#{ptname})
+   </insert>
+   <delete id="delete" parameterType="int">
+      delete from producttype where ptid=#{value}
+   </delete>
+   <update id="update" parameterType="ProductType">
+      update producttype set ptname=#{ptname} where ptid=#{ptid}
+   </update>
+</mapper>

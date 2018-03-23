@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.OrderMapper"> 
+<resultMap type="order" id="OrderMap">
+<result    column="order_id" property="order_id"/>
+<result column="order_code" property="order_code"/>
+<result column="order_price" property="order_price"/>
+<result column="create_time" property="create_time"/>
+<result column="member_id" property="member_id"/>
+<result column="order_status" property="order_status"/>
+<result column="payment_status" property="payment_status"/>
+<result column="shipping_status" property="shipping_status"/>
+<result column="payment_way" property="payment_way"/>
+<association property="receive_id" column="receive_id"  select="com.mapper.ReceiveMapper.getReId"></association>
+</resultMap>
+
+<select id="listOrder" resultMap="OrderMap" >
+select * from sq_order 
+</select>
+
+
+<select id="getCount" resultType="int">
+select count(*) from sq_order
+</select>
+</mapper>
+

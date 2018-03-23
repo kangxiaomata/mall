@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.ProductMapper">
+   <resultMap type="Product" id="ProductMap">
+      <result column="pid" property="pid"/>
+      <result column="pname" property="pname"/>
+      <result column="price" property="price"/>
+      <result column="saleCount" property="saleCount"/>
+      <result column="descript" property="descript"/>
+      <result column="pimg" property="pimg"/>
+      <association property="pbrand" column="pbid" select="com.mapper.PbrandMapper.getById"></association>
+      <association property="productType" column="ptid" select="com.mapper.ProductTypeMapper.getById"></association>
+   </resultMap>
+   
+   <select id="getById" parameterType="int" resultMap="ProductMap">
+      select * from product where pid=#{value}
+   </select>
+   <select id="listAll" parameterType="java.util.Map" resultMap="ProductMap">
+      select * from product 
+      <where>
+         <if test="qname!=null">and pname like '%${qname}%'</if>
+         <if test="ptid>0">and ptid=#{ptid}</if>
+      </where>
+       <!-- limit #{index},#{size} -->
+   </select>
+   <select id="getTotalCount" parameterType="java.util.Map" resultType="int">
+      select count(*) from product 
+      <where>
+         <if test="qname!=null">and pname like '%${qname}%'</if>
+         <if test="ptid>0">and ptid=#{ptid}</if>
+      </where>
+   </select>
+   
+   
+  <!--  <insert id="save" parameterType="Product">
+      insert into product (pname,price,saleCount,descript,pimg,ptid) values(#{pname},#{price},#{saleCount},#{descript},#{pimg},#{productType.ptid})
+   </insert>
+   <delete id="delete" parameterType="int">
+      delete from product where pid=#{value}
+   </delete>
+   <update id="update" parameterType="Product">
+      update product set pname=#{pname},price=#{price},saleCount=#{saleCount},descript=#{descript},pimg=#{pimg},ptid=#{productType.ptid} where pid=#{pid }
+   </update> -->
+   
+</mapper>
