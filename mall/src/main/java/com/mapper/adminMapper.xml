@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mapper.AdminMapper">
+	<insert id="add" parameterType="Admin">
+		insert into admin values(null,#{username},#{password},#{rid})
+	</insert>
+	<delete id="remove" parameterType="int">
+		delete from admin where aid = #{value}
+	</delete>
+	<update id="edit" parameterType="Admin">
+		update admin set username=#{username},password=#{password},rid=#{rid} where
+		aid=#{aid}
+	</update>
+
+	<resultMap type="Admin" id="adminMap">
+		<result column="aid" property="aid" />
+		<result column="username" property="username" />
+		<result column="password" property="password" />
+		<association column="roleId" property="role"
+			select="com.mapper.RoleMapper.getRoleById" />
+	</resultMap>
+
+	<select id="getAdminById" parameterType="int" resultMap="adminMap">
+		select * from admin where aid = #{value}
+	</select>
+
+	<select id="getAdminByName" parameterType="java.lang.String" resultMap="adminMap">
+		select * from admin where username = #{value}
+	</select>
+
+	<select id="query" resultMap="adminMap">
+		select * from admin where 0=0
+	</select>
+</mapper>

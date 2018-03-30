@@ -1,50 +1,55 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>LarryCMS后台登录</title>
-	<meta name="renderer" content="webkit">	
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">	
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-	<meta name="apple-mobile-web-app-status-bar-style" content="black">	
-	<meta name="apple-mobile-web-app-capable" content="yes">	
-	<meta name="format-detection" content="telephone=no">	
-	<!-- load css -->
-	<link rel="stylesheet" type="text/css" href="common/layui/css/layui.css" media="all">
-	<link rel="stylesheet" type="text/css" href="css/login.css" media="all">
+<meta charset="UTF-8">
+<title>LarryCMS后台登录</title>
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="format-detection" content="telephone=no">
+<!-- load css -->
+<link rel="stylesheet" type="text/css" href="/common/layui/css/layui.css"
+	media="all">
+<link rel="stylesheet" type="text/css" href="/css/login.css" media="all">
+<script type="text/javascript" src="/js/jquery-3.0.0.js"></script>
 </head>
 <body>
-<div class="layui-canvs"></div>
-<div class="layui-layout layui-layout-login">
-	<h1>
-		 <strong>LarryCMS管理系统后台</strong>
-		 <em>Management System</em>
-	</h1>
+
+	<div class="layui-canvs"></div>
+	<div class="layui-layout layui-layout-login">
+	<form action="" method="post" >
+		<h1>
+			<strong>LarryCMS管理系统后台</strong> <em>Management System</em>
+		</h1>
 	<div class="layui-user-icon larry-login">
-		 <input type="text" placeholder="账号" class="login_txtbx"/>
+		 <input type="text" placeholder="请输入账号..." class="login_txtbx" name="username"/>
 	</div>
 	<div class="layui-pwd-icon larry-login">
-		 <input type="password" placeholder="密码" class="login_txtbx"/>
+		 <input type="password" placeholder="请输入密码..." class="login_txtbx" name="password"/>
 	</div>
     <div class="layui-val-icon larry-login">
     	<div class="layui-code-box">
-    		<input type="text" id="code" name="code" placeholder="验证码" maxlength="4" class="login_txtbx">
+    		<input type="text" id="code" name="code" placeholder="请输入验证码..." maxlength="4" class="login_txtbx">
             <img src="images/verifyimg.png" alt="" class="verifyImg" id="verifyImg" onClick="javascript:this.src='xxx'+Math.random();">
     	</div>
     </div>
     <div class="layui-submit larry-login">
     	<input type="button" value="立即登陆" class="submit_btn"/>
     </div>
+    </form>
     <div class="layui-login-text">
     	<p>© 2016-2017 Larry 版权所有</p>
         <p>鄂xxxxxx</p>
     </div>
 </div>
-<script type="text/javascript" src="common/layui/lay/dest/layui.all.js"></script>
-<script type="text/javascript" src="js/login.js"></script>
-<script type="text/javascript" src="jsplug/jparticle.jquery.js"></script>
+<script type="text/javascript" src="/common/layui/lay/dest/layui.all.js"></script>
+<script type="text/javascript" src="/js/login.js"></script>
+<script type="text/javascript" src="/jsplug/jparticle.jquery.js"></script>
 <script type="text/javascript">
 $(function(){
 	$(".layui-canvs").jParticle({
@@ -53,9 +58,27 @@ $(function(){
 	});
 	//登录链接测试，使用时可删除
 	$(".submit_btn").click(function(){
-	  location.href="index.jsp";
+		var username=$( "input[name='username' ]").val();
+		var password=$("input[name='password' ]").val();
+		var code=$("#code").val();
+		var username_check = 1;
+		var password_check = 1;
+		if(username==null || username.trim().length==0){
+			username_check = 0;
+			alert("用户名不能为空!");
+		}
+		if(password==null || password.trim().length==0){
+			password_check = 0;
+			alert("密码不能为空!");
+		}
+		if(username_check==1 && password_check==1){
+			document.forms[0].action="/login/checkAdmin";
+			document.forms[0].submit();
+		}
+        	
 	});
 });
 </script>
+
 </body>
 </html>

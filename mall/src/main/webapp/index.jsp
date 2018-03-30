@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%
+    String path=request.getContextPath();
+    String basePath=request.getScheme()+"://"+request.getServerName()+":"
+    +request.getServerPort()+path+"/";
+%>
+<base href="<%=basePath%>">
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,9 +18,9 @@
 	<meta name="apple-mobile-web-app-capable" content="yes">	
 	<meta name="format-detection" content="telephone=no">	
 	<!-- load css -->
-	<link rel="stylesheet" type="text/css" href="common/layui/css/layui.css" media="all">
-	<link rel="stylesheet" type="text/css" href="common/global.css" media="all">
-	<link rel="stylesheet" type="text/css" href="css/adminstyle.css" media="all">
+	<link rel="stylesheet" type="text/css" href="/common/layui/css/layui.css" media="all">
+	<link rel="stylesheet" type="text/css" href="/common/global.css" media="all">
+	<link rel="stylesheet" type="text/css" href="/css/adminstyle.css" media="all">
 	
 	
 </head>
@@ -84,7 +90,7 @@
 		<!-- 左侧菜单 -->
 		<ul class="layui-nav layui-nav-tree">
 			<li class="layui-nav-item layui-this">
-				<a href="javascript:;" data-url="main.jsp">
+				<a href="javascript:;" data-url="/main.jsp">
 				    <i class="iconfont icon-home1" data-icon='icon-home1'></i>
 					<span>后台首页</span>
 				</a>
@@ -98,13 +104,13 @@
 				</a>
 				<dl class="layui-nav-child">
                     <dd>
-                        <a href="javascript:;" data-url="personInfo.jsp">
+                        <a href="javascript:;" data-url="/personInfo.jsp">
                             <i class="iconfont icon-geren1" data-icon='icon-geren1'></i>
                             <span>商品添加</span>
                         </a>
                     </dd>
                     <dd>
-                        <a href="javascript:;" data-url="changepwd.jsp">
+                        <a href="javascript:;" data-url="/changepwd.jsp">
                             <i class="iconfont icon-iconfuzhi01" data-icon='icon-iconfuzhi01'></i>
                             <span>修改密码</span>
                         </a>
@@ -132,13 +138,13 @@
 					    		</a>
 					    	</dd>
 					    	<dd>
-					    		<a href="javascript:;"  data-url="table_1.jsp">
+					    		<a href="javascript:;"  data-url="/table_1.jsp">
 					    		   <i class="iconfont icon-jiaoseguanli4" data-icon='icon-jiaoseguanli4'></i>
 					    		   <span>发货信息管理</span>
 					    		</a>
 					    	</dd>
 					    	<dd>
-					    		<a href="javascript:;" data-url="myloginfo.jsp">
+					    		<a href="javascript:;" data-url="/myloginfo.jsp">
 					    		   <i class="iconfont icon-quanxian2" data-icon='icon-quanxian2'></i>
 					    		   <span>退货/退款订单管理</span>
 					    		</a>
@@ -154,19 +160,19 @@
 					</a>
 					    <dl class="layui-nav-child">
 					    	<dd>
-					    		<a href="javascript:;" data-url="table.jsp">
+					    		<a href="javascript:;" data-url="/table.jsp">
 					    		   <i class="iconfont icon-yonghu1" data-icon='icon-yonghu1'></i>
 					    		   <span>有线条表格</span>
 					    		</a>
 					    	</dd>
 					    	<dd>
-					    		<a href="javascript:;"  data-url="table_1.jsp">
+					    		<a href="javascript:;"  data-url="/table_1.jsp">
 					    		   <i class="iconfont icon-jiaoseguanli4" data-icon='icon-jiaoseguanli4'></i>
 					    		   <span>无线条输入增加内容框</span>
 					    		</a>
 					    	</dd>
 					    	<dd>
-					    		<a href="javascript:;" data-url="myloginfo.jsp">
+					    		<a href="javascript:;" data-url="/myloginfo.jsp">
 					    		   <i class="iconfont icon-quanxian2" data-icon='icon-quanxian2'></i>
 					    		   <span>无线条表格</span>
 					    		</a>
@@ -185,13 +191,13 @@
 					</a>
 					<dl class="layui-nav-child">
                            <dd>
-                           	   <a href="javascript:;" data-url="404.jsp">
+                           	   <a href="javascript:;" data-url="/404.jsp">
 					              <i class="iconfont icon-zhuti"  data-icon='icon-zhuti'></i>
 					              <span>404提示页面</span>
 					           </a>
                            </dd>
                            <dd>
-                           	   <a href="javascript:;" data-url="tab.jsp">
+                           	   <a href="javascript:;" data-url="/tab.jsp">
 					              <i class="iconfont icon-zhuti"  data-icon='icon-zhuti'></i>
 					              <span>选项卡页面</span>
 					           </a>
@@ -321,7 +327,7 @@
 				</ul>
 			<div class="layui-tab-content" style="min-height: 150px; ">
 				<div class="layui-tab-item layui-show">
-					<iframe class="larry-iframe" data-id='0' src="main.jsp"></iframe>
+					<iframe class="larry-iframe" data-id='0' src="/main.jsp"></iframe>
 				</div>
 			</div>
 		</div>
@@ -337,15 +343,15 @@
 	</div>
 </div>
 <!-- 加载js文件-->                                                                                                                                                                                           
-	<script type="text/javascript" src="common/layui/layui.js"></script> 
-	<script type="text/javascript" src="js/larry.js"></script>
-	<script type="text/javascript" src="js/index.js"></script>
+	<script type="text/javascript" src="/common/layui/layui.js"></script> 
+	<script type="text/javascript" src="/js/larry.js"></script>
+	<script type="text/javascript" src="/js/index.js"></script>
 <!-- 锁屏 -->
 <div class="lock-screen" style="display: none;">
 	<div id="locker" class="lock-wrapper">
 		<div id="time"></div>
 		<div class="lock-box center">
-			<img src="images/userimg.jpg" alt="">
+			<img src="/images/userimg.jpg" alt="">
 			<h1>admin</h1>
 			<duv class="form-group col-lg-12">
 				<input type="password" placeholder='锁屏状态，请输入密码解锁' id="lock_password" class="form-control lock-input" autofocus name="lock_password">

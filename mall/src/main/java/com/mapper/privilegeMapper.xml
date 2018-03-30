@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ 
+ <mapper namespace="com.mapper.PrivilegeMapper">
+     <insert id="add" parameterType="Privilege">
+        insert into privilege values(null,#{priName},#{parentId},#{priType},#{priNode},#{url},#{priPs})
+     </insert>
+     <delete id="remove" parameterType="int">
+        delete from privilege where priId = #{value}
+     </delete>
+     <update id="edit" parameterType="Privilege">
+        update privilege set priName=#{priName},parentId=#{parentId},
+        priType=#{priType},priNode=#{priNode},url=#{url},priPs=#{priPs}
+        where priId=#{priId}
+     </update>
+     
+     
+     <select id="getPrivilegeById" parameterType="int" resultType="Privilege">
+         select * from privilege where priId = #{value}
+     </select>
+     
+     <select id="query" resultType="Privilege">
+         select * from privilege where 0=0
+     </select>
+     
+     <select id="getPrivilegeByRoleId" parameterType="int" resultType="Privilege">
+         select * from  privilege where priId in 
+         (select priId from r_p where roleId = #{value})
+     </select>
+ </mapper>
