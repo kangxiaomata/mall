@@ -23,7 +23,7 @@ public class AdminRealm extends AuthorizingRealm{
 
 	@Override
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
-
+		
 		return null;
 	}
 

@@ -61,17 +61,12 @@ $(function(){
 		var username=$( "input[name='username' ]").val();
 		var password=$("input[name='password' ]").val();
 		var code=$("#code").val();
-		var username_check = 1;
-		var password_check = 1;
-		if(username==null || username.trim().length==0){
-			username_check = 0;
-			alert("用户名不能为空!");
+		var up_check = true;
+		if(username==null || username.trim().length==0 || password==null || password.trim().length==0){
+			up_check = false;
+			alert("用户名或密码不能为空!");
 		}
-		if(password==null || password.trim().length==0){
-			password_check = 0;
-			alert("密码不能为空!");
-		}
-		if(username_check==1 && password_check==1){
+		if(up_check){
 			document.forms[0].action="/login/checkAdmin";
 			document.forms[0].submit();
 		}

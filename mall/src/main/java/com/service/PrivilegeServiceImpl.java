@@ -9,7 +9,7 @@ import com.dao.PrivilegeDao;
 import com.model.Privilege;
 
 @Service
-public class PrivilegeService {
+public class PrivilegeServiceImpl implements PriviligeService{
 	
 /*	public void add(Privilege privilege);
 	
