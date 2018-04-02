@@ -8,24 +8,37 @@ import org.apache.shiro.authc.SimpleAuthenticationInfo;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.authz.AuthorizationInfo;
+import org.apache.shiro.authz.SimpleAuthorizationInfo;
+import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.realm.AuthorizingRealm;
+import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import com.model.Admin;
 import com.service.AdminService;
 
 public class AdminRealm extends AuthorizingRealm{
-
+	
 	@Autowired
 	private AdminService as;
 
 	@Override
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
-		
-		return null;
+		 System.out.println("ÊÚÈ¨");
+		 String username =  (String)principals.getPrimaryPrincipal();
+		 Admin admin = as.getAdminByName(username);
+		 System.out.println(admin);
+		 SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
+		 info.setRoles(as.getRoleNameSet(admin));
+		 info.setStringPermissions(as.getPermissionNamesSet(admin));
+		 
+		 System.out.println(as.getPermissionNamesSet(admin)+"\n"+as.getRoleNameSet(admin));
+		 
+		return info;
 	}
+	
+	
 
 	@Override
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
@@ -44,8 +57,17 @@ public class AdminRealm extends AuthorizingRealm{
 		ByteSource salt=ByteSource.Util.bytes(username);
 		
 		SimpleAuthenticationInfo info=new SimpleAuthenticationInfo(username,admin.getPassword(),salt,getName());
-		
 		return info;
 	}
 
+	public static void main(String[] args){
+		String hashAlgorithName="MD5";
+		String pass="james";
+		Object salt=ByteSource.Util.bytes("lebron");
+		int count=1024;
+		Object result=new SimpleHash(hashAlgorithName, pass,salt,count);
+		System.out.println("result:"+result);
+	}
+	
+	
 }

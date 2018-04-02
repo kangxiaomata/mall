@@ -1,14 +1,18 @@
 package com.service;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.dao.AdminDao;
 import com.model.Admin;
+import com.model.Privilege;
 
 
 @Service
 public class AdminServiceImpl implements AdminService{
+	
 	
 /*	public void add(Admin admin);
 	
@@ -69,6 +73,27 @@ public class AdminServiceImpl implements AdminService{
 			return dao.getAdminByName(username);
 		}
 		return null;
+	}
+
+	@Override
+	public Set<String> getRoleNameSet(Admin admin) {
+		Set<String> set = new HashSet<>();
+		if (admin != null) {
+			set.add(admin.getRole().getRoleName());
+		}
+		return set;
+	}
+
+	@Override
+	public Set<String> getPermissionNamesSet(Admin admin) {
+		Set<String> set = new HashSet<>();
+		if (admin != null) {
+			List<Privilege> list = admin.getRole().getPrivileges();
+			for (Privilege privilege : list) {
+				set.add(privilege.getPriName());
+			}
+		}
+		return set;
 	}
 	
 }

@@ -1,6 +1,8 @@
 package com.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -45,7 +47,16 @@ public class PrivilegeServiceImpl implements PriviligeService{
 	}
 	
 	public List<Privilege> query(){
-		return dao.query();
+		Map map = new HashMap<>();
+		map.put("priNode", 1);
+		return dao.query(map);
+	}
+	
+	public List<Privilege> queryMenu(){
+		Map map = new HashMap<>();
+		map.put("priNode", 1);
+		map.put("priType", 1);
+		return dao.query(map);
 	}
 	
 	public Privilege getPrivilegeById(int priId){

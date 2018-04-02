@@ -24,6 +24,7 @@ public class LoginController {
 		if (!subject.isAuthenticated()) {
 			try{
 			    subject.login(token);
+			    subject.hasRole("");
 			}catch(Exception e){
 				e.printStackTrace();
 				mv.setViewName("login");

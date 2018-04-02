@@ -1,7 +1,7 @@
 package com.mapper;
 
 import java.util.List;
-
+import java.util.Map;
 import com.model.Privilege;
 
 
@@ -13,10 +13,12 @@ public interface PrivilegeMapper {
 	
 	public void edit(Privilege privilege);
 	
-	public List<Privilege> query();
+	public List<Privilege> query(Map map);
 	
 	public Privilege getPrivilegeById(int priId);
 	
 	public List<Privilege> getPrivilegeByRoleId(int roleId);
+	
+	public List<Privilege> getPrivilegeByParentId(int parentId);
 
 }

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
     <%
     String path=request.getContextPath();
     String basePath=request.getScheme()+"://"+request.getServerName()+":"
@@ -95,6 +96,8 @@
 					<span>后台首页</span>
 				</a>
 			</li>
+			
+			
 			<!-- 商品管理 -->
 			<li class="layui-nav-item">
 				<a href="javascript:;">
@@ -109,101 +112,11 @@
                             <span>商品添加</span>
                         </a>
                     </dd>
-                    <dd>
-                        <a href="javascript:;" data-url="/changepwd.jsp">
-                            <i class="iconfont icon-iconfuzhi01" data-icon='icon-iconfuzhi01'></i>
-                            <span>修改密码</span>
-                        </a>
-                    </dd>
-                    <dd>
-                        <a href="javascript:;" data-url="ProductServlet?state=list">
-                            <i class="iconfont icon-piliangicon" data-icon='icon-piliangicon'></i>
-                            <span>商品展示</span>
-                        </a>
-                    </dd>
+                    
                 </dl>
 			</li>
-			<!-- 用户管理 -->
-				<li class="layui-nav-item">
-					<a href="javascript:;">
-					   <i class="iconfont icon-jiaoseguanli2" ></i>
-					   <span>订单管理</span>
-					   <em class="layui-nav-more"></em>
-					</a>
-					    <dl class="layui-nav-child">
-					    	<dd>
-					    		<a href="javascript:;" data-url="OrderServlet?mothed=list">
-					    		   <i class="iconfont icon-yonghu1" data-icon='icon-yonghu1'></i>
-					    		   <span>订单管理</span>
-					    		</a>
-					    	</dd>
-					    	<dd>
-					    		<a href="javascript:;"  data-url="/table_1.jsp">
-					    		   <i class="iconfont icon-jiaoseguanli4" data-icon='icon-jiaoseguanli4'></i>
-					    		   <span>发货信息管理</span>
-					    		</a>
-					    	</dd>
-					    	<dd>
-					    		<a href="javascript:;" data-url="/myloginfo.jsp">
-					    		   <i class="iconfont icon-quanxian2" data-icon='icon-quanxian2'></i>
-					    		   <span>退货/退款订单管理</span>
-					    		</a>
-					    	</dd>
-					    </dl>
-			    </li>
 			
-			<li class="layui-nav-item">
-					<a href="javascript:;">
-					   <i class="iconfont icon-jiaoseguanli2" ></i>
-					   <span>表格表单</span>
-					   <em class="layui-nav-more"></em>
-					</a>
-					    <dl class="layui-nav-child">
-					    	<dd>
-					    		<a href="javascript:;" data-url="/table.jsp">
-					    		   <i class="iconfont icon-yonghu1" data-icon='icon-yonghu1'></i>
-					    		   <span>有线条表格</span>
-					    		</a>
-					    	</dd>
-					    	<dd>
-					    		<a href="javascript:;"  data-url="/table_1.jsp">
-					    		   <i class="iconfont icon-jiaoseguanli4" data-icon='icon-jiaoseguanli4'></i>
-					    		   <span>无线条输入增加内容框</span>
-					    		</a>
-					    	</dd>
-					    	<dd>
-					    		<a href="javascript:;" data-url="/myloginfo.jsp">
-					    		   <i class="iconfont icon-quanxian2" data-icon='icon-quanxian2'></i>
-					    		   <span>无线条表格</span>
-					    		</a>
-					    	</dd>
-					    </dl>
-			    </li>
-			<!-- 内容管理 -->
-		
 			
-                 <!-- 会员管理 -->
-				<li class="layui-nav-item">
-					<a href="javascript:;">
-					   <i class="iconfont icon-m-members" ></i>
-					   <span>单页面</span>
-					   <em class="layui-nav-more"></em>
-					</a>
-					<dl class="layui-nav-child">
-                           <dd>
-                           	   <a href="javascript:;" data-url="/404.jsp">
-					              <i class="iconfont icon-zhuti"  data-icon='icon-zhuti'></i>
-					              <span>404提示页面</span>
-					           </a>
-                           </dd>
-                           <dd>
-                           	   <a href="javascript:;" data-url="/tab.jsp">
-					              <i class="iconfont icon-zhuti"  data-icon='icon-zhuti'></i>
-					              <span>选项卡页面</span>
-					           </a>
-                           </dd>
-                    </dl>
-				</li>
 				
 				<li class="layui-nav-item">
 					<a href="javascript:;">

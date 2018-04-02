@@ -70,8 +70,6 @@
 		<!-- 你现在给这些切点提供什么建议 -->
 		<aop:advisor advice-ref="aopAdvice" pointcut-ref="pointCut" />
 	</aop:config>
-	
-   
 	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
 		<property name="cacheManager" ref="cacheManager"></property>
 		<property name="realm" ref="jdbcRealm"></property>
@@ -104,13 +102,13 @@
 		<property name="unauthorizedUrl" value="/login.jsp"></property>
 		<property name="filterChainDefinitions">
 			<value>
-	   <!--            有时候shrio会拦截静态资源访问 
+	   <!--            有时候shrio会拦截静态资源访问            -->
 	   /js/**=anon
        /css/**=anon
        /common/**=anon
        /json/**=anon
        /jsplug/**=anon
-       /images/**=anon  -->
+       /images/**=anon  
        /login.jsp=anon
        /login/checkAdmin=anon
        /logout=logout
