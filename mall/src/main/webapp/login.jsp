@@ -67,7 +67,7 @@ $(function(){
 			alert("用户名或密码不能为空!");
 		}
 		if(up_check){
-			document.forms[0].action="/login/checkAdmin";
+			document.forms[0].action="/checkAdmin";
 			document.forms[0].submit();
 		}
         	

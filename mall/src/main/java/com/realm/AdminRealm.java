@@ -1,5 +1,6 @@
 package com.realm;
 
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
@@ -25,21 +26,17 @@ public class AdminRealm extends AuthorizingRealm{
 
 	@Override
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
-		 System.out.println("ÊÚÈ¨");
 		 String username =  (String)principals.getPrimaryPrincipal();
 		 Admin admin = as.getAdminByName(username);
-		 System.out.println(admin);
 		 SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
 		 info.setRoles(as.getRoleNameSet(admin));
 		 info.setStringPermissions(as.getPermissionNamesSet(admin));
-		 
-		 System.out.println(as.getPermissionNamesSet(admin)+"\n"+as.getRoleNameSet(admin));
-		 
+		 Session session=SecurityUtils.getSubject().getSession();
+		 System.out.println(admin);
+		 session.setAttribute("user",admin);
 		return info;
 	}
 	
-	
-
 	@Override
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
 		UsernamePasswordToken uptoken = (UsernamePasswordToken) token;
@@ -55,7 +52,6 @@ public class AdminRealm extends AuthorizingRealm{
 			return null;
 		}
 		ByteSource salt=ByteSource.Util.bytes(username);
-		
 		SimpleAuthenticationInfo info=new SimpleAuthenticationInfo(username,admin.getPassword(),salt,getName());
 		return info;
 	}

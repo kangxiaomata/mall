@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
 <%@taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
 <html lang="en">
 <head>
@@ -12,10 +11,10 @@
 	<meta name="apple-mobile-web-app-status-bar-style" content="black">	
 	<meta name="apple-mobile-web-app-capable" content="yes">	
 	<meta name="format-detection" content="telephone=no">	
-	<link rel="stylesheet" type="text/css" href="common/layui/css/layui.css" media="all">
-	<link rel="stylesheet" type="text/css" href="common/bootstrap/css/bootstrap.css" media="all">
-	<link rel="stylesheet" type="text/css" href="common/global.css" media="all">
-	<link rel="stylesheet" type="text/css" href="css/personal.css" media="all">
+	<link rel="stylesheet" type="text/css" href="/common/layui/css/layui.css" media="all">
+	<link rel="stylesheet" type="text/css" href="/common/bootstrap/css/bootstrap.css" media="all">
+	<link rel="stylesheet" type="text/css" href="/common/global.css" media="all">
+	<link rel="stylesheet" type="text/css" href="/css/personal.css" media="all">
 </head>
 <body>
 <section class="layui-larry-box">
@@ -35,39 +34,42 @@
                     <table class="layui-table" id="table1">
 					    <colgroup>
 						<col width="2%">
-						<col width="2%">
-						<col width="7%">
+						<col width="5%">
+						<col width="10%">
+						<col width="15%">
 						<col width="8%">
 						<col width="7%">
-						<col width="7%">
-						<col width="7%">
-						<col width="7%">
-						<col width="7%">
-						<col width="7%">
-						<col width="7%">
-						<col width="7%">
+						<col width="10%">
 					</colgroup>
 					<thead>
 						<tr >
 							<th></th>
-							<th style="text-align:left;">id</th>
-							<th>订单编号</th>
-							<th>订单金额</th>
-							<th>下单日期</th>
-							<th>会员编号</th>
-							<th>订单状态</th>
-							<th>支付状态</th>
-							<th>配送状态</th>
-							<th>支付方式</th>
+							<th style="text-align:left;">操作员ID</th>
+							<th>用户名</th>
+							<th>密码</th>
+							<th>真实姓名</th>
+							<th>角色</th>
 							<th>操作</th>
 						</tr>
 					</thead>
 					<tbody class="news_content">
-					<c:forEach items="${listOrder }" var="list" >
+					<c:forEach items="${admins}" var="admin" >
 						<tr id="tr">
+						    <td></td>
+						    <td>${admin.aid}</td>
+						    <td>${admin.username}</td>
+						    <td>${admin.password}</td>
+						    <td>${admin.realName}</td>
+						    <td>${admin.role.roleName}</td>
 						    <td>
-								<a class="layui-btn layui-btn-mini"><i></i> 编辑</a>
-								<a class="layui-btn layui-btn-mini"><i></i> 删除</a>
+						    <c:forEach items="${user.role.privileges}" var="pri">
+						        <c:if test="${pri.priAlias == 'admin_upd'}">
+								<a href="${pri.url}/${admin.aid}" class="layui-btn layui-btn-mini"><i></i> 编辑</a>
+								</c:if>
+								 <c:if test="${pri.priAlias == 'admin_del'}">
+								<a href="${pri.url}/${admin.aid}" class="layui-btn layui-btn-mini"><i></i> 删除</a>
+								</c:if>
+						    </c:forEach>
 							</td>
 						</tr>
 						</c:forEach>
@@ -82,7 +84,7 @@
 		</div>
 	
 </section>
-<script type="text/javascript" src="common/layui/layui.js"></script>
-<script type="text/javascript" src="js/newslist.js"></script>
+<script type="text/javascript" src="/common/layui/layui.js"></script>
+<script type="text/javascript" src="/js/newslist.js"></script>
 </body>
 </html>

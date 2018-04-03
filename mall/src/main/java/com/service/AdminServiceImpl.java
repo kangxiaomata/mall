@@ -56,6 +56,9 @@ public class AdminServiceImpl implements AdminService{
 		
 		List<Admin> list = dao.query();
 		
+//		for (Admin admin : list) {
+//			admin.getRole().setPrivileges(null);
+//		}
 		return list;
 	}
 	

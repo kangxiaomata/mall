@@ -19,6 +19,4 @@ public interface PrivilegeMapper {
 	
 	public List<Privilege> getPrivilegeByRoleId(int roleId);
 	
-	public List<Privilege> getPrivilegeByParentId(int parentId);
-
 }

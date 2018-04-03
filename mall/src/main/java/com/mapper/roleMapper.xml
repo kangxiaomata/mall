@@ -27,5 +27,11 @@
      <select id="query" resultMap="roleMap" >
          select * from role where 0=0
      </select>
+     
+     <select id="listRole" resultType="Role" >
+         select * from role where 0=0
+     </select>
+     
+     
 
  </mapper>

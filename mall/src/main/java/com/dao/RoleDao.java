@@ -36,11 +36,14 @@ public class RoleDao {
 	
 	public List<Role> query(){
 		return mapper.query();
-		
 	}
 	
 	public Role getRoleById(int roleId){
 		return mapper.getRoleById(roleId);
+	}
+	
+	public List<Role> listRole(){
+		return mapper.listRole();
 	}
 	
 }

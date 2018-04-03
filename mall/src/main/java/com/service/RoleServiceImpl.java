@@ -53,4 +53,8 @@ public class RoleServiceImpl implements RoleService{
 		return null;
 	}
 	
+	public List<Role> listRole(){
+		return dao.listRole();
+	}
+	
 }

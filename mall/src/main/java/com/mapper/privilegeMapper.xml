@@ -16,19 +16,7 @@
         where priId=#{priId}
      </update>
      
-     <resultMap type="Privilege" id="PrivilegeMap">
-         <id column="priId" property="priId"/>
-         <result column="priName" property="priName"/>
-         <result column="parentId" property="parentId"/>
-         <result column="priType" property="priType"/>
-         <result column="priNode" property="priNode"/>
-         <result column="priAlias" property="priAlias"/>
-         <result column="url" property="url"/>
-         <result column="priPs" property="priPs"/>
-         <association property="nodes" column="priId" select="com.mapper.PrivilegeMapper.getPrivilegeByParentId"></association>
-     </resultMap>
-     
-     <select id="getPrivilegeById" parameterType="int" resultMap="PrivilegeMap">
+     <select id="getPrivilegeById" parameterType="int" resultType="Privilege">
          select * from privilege where priId = #{value}
          <if test="rid!=null">
              
@@ -45,12 +33,12 @@
          </if>
      </select>
      
-     <select id="getPrivilegeByRoleId" parameterType="int" resultMap="PrivilegeMap">
+     <select id="getPrivilegeByRoleId" parameterType="int" resultType="Privilege">
          select * from privilege where priId in 
          (select priId from r_p where roleId = #{value})
      </select>
      
-     <select id="getPrivilegeByParentId" parameterType="int" resultMap="PrivilegeMap">
+     <select id="getPrivilegeByParentId" parameterType="int" resultType="Privilege">
          select * from privilege where parentId = #{value}
      </select>
      

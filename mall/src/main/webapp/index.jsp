@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+    <%@ taglib uri="http://shiro.apache.org/tags" prefix="shiro" %>
     <%
     String path=request.getContextPath();
     String basePath=request.getScheme()+"://"+request.getServerName()+":"
@@ -77,7 +78,7 @@
 						锁屏</a>
 					</li>
 					<li class="layui-nav-item">
-						<a href="login.jsp">
+						<a href="/logout">
                         <i class="iconfont icon-exit"></i>
 						退出</a>
 					</li>
@@ -99,23 +100,29 @@
 			
 			
 			<!-- 商品管理 -->
+			<c:forEach items="${user.role.privileges}" var="pri">
+			 <c:if test="${pri.parentId==0 && pri.priType==1}"> 
 			<li class="layui-nav-item">
 				<a href="javascript:;">
 					<i class="iconfont icon-jiaoseguanli" ></i>
-					<span>商品管理</span>
+					<span>${pri.priName}</span>
 					<em class="layui-nav-more"></em>
 				</a>
 				<dl class="layui-nav-child">
+				    <c:forEach items="${user.role.privileges}" var="priv">
+				    <c:if test="${priv.parentId==pri.priId && pri.priType==1}">
                     <dd>
-                        <a href="javascript:;" data-url="/personInfo.jsp">
+                        <a href="javascript:;" data-url="${priv.url}">
                             <i class="iconfont icon-geren1" data-icon='icon-geren1'></i>
-                            <span>商品添加</span>
+                            <span>${priv.priName}</span>
                         </a>
                     </dd>
-                    
+                    </c:if>
+                    </c:forEach>
                 </dl>
 			</li>
-			
+			 </c:if> 
+			</c:forEach>
 			
 				
 				<li class="layui-nav-item">

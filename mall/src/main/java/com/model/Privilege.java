@@ -22,22 +22,16 @@ public class Privilege {
 	private int priNode;
 	private String url;
 	private String priAlias;
+	private String priPs;
+	
+	
 	public String getPriAlias() {
 		return priAlias;
 	}
 	public void setPriAlias(String priAlias) {
 		this.priAlias = priAlias;
-	}
-	private String priPs;
-	private List<Privilege> nodes;
+	}	
 	
-	
-	public List<Privilege> getNodes() {
-		return nodes;
-	}
-	public void setNodes(List<Privilege> nodes) {
-		this.nodes = nodes;
-	}
 	public int getPriId() {
 		return priId;
 	}
@@ -88,7 +82,7 @@ public class Privilege {
 	
 
 	public Privilege(int priId, String priName, int parentId, int priType, int priNode, String url, String priAlias,
-			String priPs, List<Privilege> nodes) {
+			String priPs) {
 		super();
 		this.priId = priId;
 		this.priName = priName;
@@ -98,15 +92,13 @@ public class Privilege {
 		this.url = url;
 		this.priAlias = priAlias;
 		this.priPs = priPs;
-		this.nodes = nodes;
 	}
 	
 	
 	@Override
 	public String toString() {
 		return "Privilege [priId=" + priId + ", priName=" + priName + ", parentId=" + parentId + ", priType=" + priType
-				+ ", priNode=" + priNode + ", url=" + url + ", priAlias=" + priAlias + ", priPs=" + priPs + ", nodes="
-				+ nodes + "]";
+				+ ", priNode=" + priNode + ", url=" + url + ", priAlias=" + priAlias + ", priPs=" + priPs + "]";
 	}
 
 	
