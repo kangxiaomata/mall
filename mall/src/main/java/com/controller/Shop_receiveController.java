@@ -24,15 +24,16 @@ public class Shop_receiveController {
 
 	@Autowired
 	private Shop_receiveService shop_receiveService;
-	@RequestMapping("/save")
-	public void save(Shop_receive receive) {
-		System.out.println(receive);
+	/*@RequestMapping("/save")
+	public String save(Shop_receive receive) {
 		shop_receiveService.save(receive);
-	    /*return "redirect:listAll";*/
-	}
+	    return "redirect:listAllUser";
+	}*/
 	
+    
 	@RequestMapping("/listAll")
 	public ModelAndView listAll(@RequestParam(required=true,defaultValue="1") Integer page,HttpServletRequest request,Model md) {
+		System.out.println("listAll");
 		PageHelper.startPage(page, 5);
 		ModelAndView mv=new ModelAndView();
 		Map map = new HashMap();
@@ -47,7 +48,6 @@ public class Shop_receiveController {
 	
 	private Map initMap(HttpServletRequest request,Map map) {
 		String receive_name = request.getParameter("receive_name");
-		System.out.println(receive_name);
 		map.put("receive_name", receive_name);
 		if (receive_name!=null) {
 			request.setAttribute("receive_name", receive_name);
