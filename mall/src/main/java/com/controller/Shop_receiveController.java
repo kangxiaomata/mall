@@ -24,17 +24,6 @@ public class Shop_receiveController {
 
 	@Autowired
 	private Shop_receiveService shop_receiveService;
-<<<<<<< HEAD
-	/*@RequestMapping("/save")
-	public String save(Shop_receive receive) {
-=======
-	@RequestMapping("/save")
-	public void save(Shop_receive receive) {
->>>>>>> branch 'master' of https://github.com/kangxiaomata/mall.git
-		shop_receiveService.save(receive);
-	    return "redirect:listAllUser";
-	}*/
-	
     
 	@RequestMapping("/listAll")
 	public ModelAndView listAll(@RequestParam(required=true,defaultValue="1") Integer page,HttpServletRequest request,Model md) {
