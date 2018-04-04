@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.dao.AdminDao;
 import com.model.Admin;
 import com.model.Privilege;
+import com.tools.Encryption;
 
 
 @Service
@@ -31,6 +32,7 @@ public class AdminServiceImpl implements AdminService{
 	public void add(Admin admin){
 		if (admin != null) {
 			if (admin.getUsername()!=null && admin.getPassword()!=null && admin.getRealName()!=null) {
+				admin.setPassword(Encryption.encryptionByMD5(admin.getUsername(), admin.getPassword()));
 				dao.add(admin);
 			}
 		}
@@ -46,6 +48,7 @@ public class AdminServiceImpl implements AdminService{
 		if (admin != null) {
 			if (admin.getUsername()!=null && admin.getPassword()!=null && 
 					admin.getRealName()!=null && admin.getAid() > 0) {
+				admin.setPassword(Encryption.encryptionByMD5(admin.getUsername(), admin.getPassword()));
 				dao.edit(admin);
 			}
 		}
@@ -93,7 +96,9 @@ public class AdminServiceImpl implements AdminService{
 		if (admin != null) {
 			List<Privilege> list = admin.getRole().getPrivileges();
 			for (Privilege privilege : list) {
-				set.add(privilege.getPriName());
+				if (privilege.getPriAlias() != null) {
+					set.add(privilege.getPriAlias());
+				}
 			}
 		}
 		return set;

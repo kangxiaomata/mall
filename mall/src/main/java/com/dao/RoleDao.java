@@ -43,7 +43,8 @@ public class RoleDao {
 	}
 	
 	public List<Role> listRole(){
-		return mapper.listRole();
+		List<Role> roles = mapper.listRole();
+		return roles;
 	}
 	
 }

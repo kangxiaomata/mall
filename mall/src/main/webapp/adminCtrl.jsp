@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
+<%@ taglib uri="http://shiro.apache.org/tags" prefix="shiro" %>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
@@ -26,10 +27,14 @@
 		    	<input value="" placeholder="请输入关键字" class="layui-input search_input" type="text">
 		    </div>
 		    <a class="layui-btn search_btn">查询</a>
-		</div><div class="layui-inline">
+		    <shiro:hasPermission name="admin_add">
+                <a href="/admin/toAdd" class="layui-btn layui-btn-xs">
+					<i class="layui-icon">&#xe608;</i>添加 
+				</a>
+			</shiro:hasPermission>
+		</div>
 		
-            
-		         <!-- 操作日志 -->
+		    <div class="layui-inline">
                 <div class="layui-form news_list">
                     <table class="layui-table" id="table1">
 					    <colgroup>
@@ -62,14 +67,16 @@
 						    <td>${admin.realName}</td>
 						    <td>${admin.role.roleName}</td>
 						    <td>
-						    <c:forEach items="${user.role.privileges}" var="pri">
-						        <c:if test="${pri.priAlias == 'admin_upd'}">
-								<a href="${pri.url}/${admin.aid}" class="layui-btn layui-btn-mini"><i></i> 编辑</a>
-								</c:if>
-								 <c:if test="${pri.priAlias == 'admin_del'}">
-								<a href="${pri.url}/${admin.aid}" class="layui-btn layui-btn-mini"><i></i> 删除</a>
-								</c:if>
-						    </c:forEach>
+                          <shiro:hasPermission name="admin_upd">
+                          	<a href="/admin/toEdit/${admin.aid}" class="layui-btn layui-btn-xs">
+								    <i class="layui-icon">&#xe642;</i>编辑
+								</a>
+                          </shiro:hasPermission>
+                          <shiro:hasPermission name="admin_del">
+								<a href="/admin/delete/${admin.aid}" class="layui-btn layui-btn-xs">
+								    <i class="layui-icon">&#xe640;</i>删除 
+								</a>
+					      </shiro:hasPermission>
 							</td>
 						</tr>
 						</c:forEach>
@@ -86,5 +93,6 @@
 </section>
 <script type="text/javascript" src="/common/layui/layui.js"></script>
 <script type="text/javascript" src="/js/newslist.js"></script>
+<script type="text/javascript" src="/js/jquery-3.0.0.js"></script>
 </body>
 </html>

@@ -4,13 +4,13 @@
 
 <mapper namespace="com.mapper.AdminMapper">
 	<insert id="add" parameterType="Admin">
-		insert into admin values(null,#{username},#{password},#{rid})
+		insert into admin values(null,#{username},#{password},#{realName},#{role.roleId})
 	</insert>
 	<delete id="remove" parameterType="int">
 		delete from admin where aid = #{value}
 	</delete>
 	<update id="edit" parameterType="Admin">
-		update admin set username=#{username},password=#{password},rid=#{rid} where
+		update admin set username=#{username},password=#{password},realName=#{realName},roleId=#{role.roleId} where
 		aid=#{aid}
 	</update>
 
