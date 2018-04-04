@@ -32,7 +32,6 @@ public class AdminRealm extends AuthorizingRealm{
 		 info.setRoles(as.getRoleNameSet(admin));
 		 info.setStringPermissions(as.getPermissionNamesSet(admin));
 		 Session session=SecurityUtils.getSubject().getSession();
-		 System.out.println(admin);
 		 session.setAttribute("user",admin);
 		return info;
 	}
@@ -64,6 +63,5 @@ public class AdminRealm extends AuthorizingRealm{
 		Object result=new SimpleHash(hashAlgorithName, pass,salt,count);
 		System.out.println("result:"+result);
 	}
-	
 	
 }

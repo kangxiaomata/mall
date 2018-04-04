@@ -12,7 +12,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>LarryCMS后台管理</title>
+	<title>Mall后台管理</title>
 	<meta name="renderer" content="webkit">	
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">	
@@ -55,7 +55,7 @@
             <!-- 右侧导航 -->
             <ul class="layui-nav larry-header-item">
             		<li class="layui-nav-item">
-            			账户名：广州丹奇日化
+            			账户名：${user.username}
             		</li>
             		<li class="layui-nav-item first">
 						<a href="javascript:;">			

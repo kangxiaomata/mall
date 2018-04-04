@@ -26,7 +26,6 @@ public class Shop_receiveController {
 	private Shop_receiveService shop_receiveService;
 	@RequestMapping("/save")
 	public void save(Shop_receive receive) {
-		System.out.println(receive);
 		shop_receiveService.save(receive);
 	    /*return "redirect:listAll";*/
 	}
@@ -47,7 +46,6 @@ public class Shop_receiveController {
 	
 	private Map initMap(HttpServletRequest request,Map map) {
 		String receive_name = request.getParameter("receive_name");
-		System.out.println(receive_name);
 		map.put("receive_name", receive_name);
 		if (receive_name!=null) {
 			request.setAttribute("receive_name", receive_name);

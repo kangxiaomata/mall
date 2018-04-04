@@ -48,45 +48,36 @@
             
 		         <!-- 用户详情 -->
                 <form class="layui-form" action="" method="post" style="height: 530px;">
-                   <input type="hidden" id="aid" name="aid" value="${user.aid}"/>
                    <!-- 用户名 -->
 				  <div class="layui-form-item">
 				    <label class="layui-form-label">用户名</label>
 				    <div class="layui-input-block">
-				      <input type="text" name="username" value="${user.username}" required  lay-verify="required"  autocomplete="off" class="layui-input">
+				      <input type="text" name="username" value="" required  lay-verify="required"  autocomplete="off" class="layui-input">
 				    </div>
 				  </div>
 				  <!-- 密码 -->
 				  <div class="layui-form-item">
 				    <label class="layui-form-label">密码</label>
 				    <div class="layui-input-inline">
-				      <input type="password" name="password" value="${user.password}" required lay-verify="required" autocomplete="off" class="layui-input">
+				      <input type="password" name="password" value="" required lay-verify="required" autocomplete="off" class="layui-input">
 				    </div>
 				    <div class="layui-form-mid layui-word-aux">辅助文字</div>
 				  </div>
 				  <div class="layui-form-item">
 				    <label class="layui-form-label">真实姓名</label>
 				    <div class="layui-input-block">
-				      <input type="text" name="realName" value="${user.realName}" required  lay-verify="required"  autocomplete="off" class="layui-input">
+				      <input type="text" name="realName" value="" required  lay-verify="required"  autocomplete="off" class="layui-input">
 				    </div>
 				  </div>
 				  <div class="layui-form-item">
 				    <label class="layui-form-label">角色</label>
 				    <div class="layui-input-block">
-				    
 				    <select name="roleId" lay-verify="required" id="sel_role">
                          <option value="-1">--------请选择角色-------</option>
                          <c:forEach items="${roles}" var="role">
-                         <c:if test="${user.role.roleId == role.roleId}">
-                             <option value="${role.roleId}" selected>${role.roleName}</option>
-                         </c:if>
-                         <c:if test="${user.role.roleId != role.roleId}">
                              <option value="${role.roleId}">${role.roleName}</option>
-                         </c:if>
-				             
 				        </c:forEach>
                     </select>  
-				      
 				    </div>
 				  </div>
 				  <div class="layui-form-item">
@@ -122,7 +113,7 @@ layui.use('form', function(){
 $(function(){
 	
 	$("#btn_submit").click(function(){
-		document.forms[0].action="/admin/adminEdit";
+		document.forms[0].action="/admin/adminAdd";
 		document.forms[0].submit();
 	});
 });

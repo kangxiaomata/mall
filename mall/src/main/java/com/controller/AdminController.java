@@ -18,6 +18,7 @@ public class AdminController {
 	
 	@Autowired
 	private AdminService asp;
+	@Autowired
 	private RoleService rsp;
 
 	@RequestMapping("/query")
@@ -41,12 +42,34 @@ public class AdminController {
 		List<Role> roles = rsp.listRole();
 		Admin admin = asp.getAdminById(aid);
 		mv.addObject("user", admin);
-		System.out.println(roles);
 		mv.addObject("roles", roles);
 		mv.setViewName("adminInfo");
 		return mv;
 	}
 	
+	@RequestMapping("/adminEdit")
+	public ModelAndView adminEdit(ModelAndView mv,Admin admin,int roleId){
+		admin.setRole(new Role(roleId, null, null, null));
+		asp.edit(admin);
+		mv.setViewName("redirect:/admin/query");
+		return mv;
+	}
 	
+	@RequestMapping("/toAdd")
+	public ModelAndView toAdd(ModelAndView mv){
+		List<Role> roles = rsp.listRole();
+		mv.addObject("roles", roles);
+		mv.setViewName("adminAdd");
+		return mv;
+	}
+	
+	@RequestMapping("/adminAdd")
+	public ModelAndView adminAdd(ModelAndView mv,Admin admin,int roleId){
+		System.out.println(roleId);
+		admin.setRole(new Role(roleId, null, null, null));
+		asp.add(admin);
+		mv.setViewName("redirect:/admin/query");
+		return mv;
+	}
 	
 }
