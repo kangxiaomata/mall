@@ -44,5 +44,4 @@ public class Shop_receive {
 	public void setMember_id(int member_id) {
 		this.member_id = member_id;
 	}
-	
 }
