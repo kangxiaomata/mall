@@ -11,5 +11,5 @@ public interface Shop_receiveMapper {
 	public void update(Shop_receive receive);
 	public List<Shop_receive> listAll(Map map);
 	public void delete(int receive_id);
-	public Shop_receive getById(int receive_id);
+	public List<Shop_receive> getById(int member_id);
 }

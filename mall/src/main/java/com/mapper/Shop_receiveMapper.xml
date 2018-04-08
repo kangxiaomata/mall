@@ -1,18 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.mapper.Shop_receiveMapper"> 
-<insert id="save" parameterType="Shop_receive">
-		insert into shop_receive(receive_name,receive_phone,receive_address,set_address,member_id)
+<mapper namespace="com.mapper.Shop_receiveMapper">
+	<insert id="save" parameterType="Shop_receive">
+		insert into
+		shop_receive(receive_name,receive_phone,receive_address,set_address,member_id)
 		values(#{receive_name},#{receive_phone},#{receive_address},#{set_address},#{member_id})
 	</insert>
 	<select id="listAll" resultType="Shop_receive" parameterType="java.util.Map">
-	    select * from shop_receive
-	    <where>
+		select * from shop_receive
+		<where>
 			<if test="receive_name!=null">
 				and receive_name like '%${receive_name}%'
 			</if>
 		</where>
+	</select>
+	<select id="getById" parameterType="int" resultType="Shop_receive">
+	  select * from shop_receive where member_id =#{member_id}
 	</select>
 </mapper>
 

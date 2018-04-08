@@ -41,8 +41,8 @@ public class Shop_receiveServiceImpl implements Shop_receiveService {
 	}
 
 	@Override
-	public Shop_receive getById(int receive_id) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Shop_receive> getById(int member_id) {
+	List<Shop_receive> shop_receives = shop_receiveMapper.getById(member_id);
+		return shop_receives;
 	}
 }
